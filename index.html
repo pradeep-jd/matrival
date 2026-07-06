@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatriVal™ | Premium Matrimonial Profile Auditor & Worth Estimator</title>
+  <meta name="description" content="Audit matrimonial profile strength and calculate estimation value based on education, career, and assets. MatriVal promotes equal partnership.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="glow-bg glow-1"></div>
+  <div class="glow-bg glow-2"></div>
+
+  <!-- Matrimonial Market Index Ticker -->
+  <div class="market-ticker-container" id="ticker-section">
+    <div class="ticker-wrapper">
+      <div class="ticker-track" id="ticker-track">
+        <span class="ticker-item">IIT CSE Profile Index: <span class="trend-up">▲ 14.2%</span></span>
+        <span class="ticker-item">Civil Services Premium: <span class="trend-up">▲ 8.7%</span></span>
+        <span class="ticker-item">Startup Founder Discount: <span class="trend-down">▼ 21.3%</span></span>
+        <span class="ticker-item">NRI Buffer Premium (Canada): <span class="trend-up">▲ 5.4%</span></span>
+        <span class="ticker-item">Family Business Index: <span class="trend-flat">■ 0.0%</span></span>
+        <span class="ticker-item">Height Surcharge (>6'0\"): <span class="trend-up">▲ 12.1%</span></span>
+        <span class="ticker-item">Cooking Skill Coefficient: <span class="trend-up">▲ 18.3%</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="logo-icon">⚖️</span>
+        <h1 class="logo-text">MatriVal<span class="logo-sub">™</span></h1>
+      </div>
+      <p class="tagline">Proprietary Matrimonial Valuation & Profile Strength Auditor</p>
+    </header>
+
+    <main class="main-content">
+      
+      <!-- STEP WIZARD CARD -->
+      <div class="card wizard-card" id="wizard-card">
+        
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+          <div class="progress-steps">
+            <div class="step-indicator active" id="step-ind-1">
+              <span class="step-num">1</span>
+              <span class="step-name">Identity</span>
+            </div>
+            <div class="step-indicator" id="step-ind-2">
+              <span class="step-num">2</span>
+              <span class="step-name">Pedigree</span>
+            </div>
+            <div class="step-indicator" id="step-ind-3">
+              <span class="step-num">3</span>
+              <span class="step-name">Specs</span>
+            </div>
+            <div class="step-indicator" id="step-ind-4">
+              <span class="step-num">4</span>
+              <span class="step-name">Assets</span>
+            </div>
+          </div>
+          <div class="progress-line-bg">
+            <div class="progress-line-fill" id="progress-line-fill"></div>
+          </div>
+        </div>
+
+        <form id="valuation-form" onsubmit="return false;">
+          
+          <!-- STEP 1: IDENTITY -->
+          <div class="wizard-step active" id="step-1">
+            <h2 class="step-title">Step 1: Profile Identity</h2>
+            <p class="step-description">Enter your name and gender to initialize the matrimonial auditing engine.</p>
+            
+            <div class="form-group">
+              <label for="profile-name">Full Name</label>
+              <input type="text" id="profile-name" placeholder="E.g., Rohan Sharma or Priya Patel" required>
+              <span class="field-hint">This name will be used on your matrimonial audit files.</span>
+            </div>
+
+            <div class="form-group">
+              <label>Select Gender</label>
+              <div class="radio-card-group gender-group">
+                <label class="radio-card">
+                  <input type="radio" name="profile-gender" value="male" checked required>
+                  <div class="card-content">
+                    <span class="card-title">♂️ Male</span>
+                    <span class="card-desc">Audit as Groom Profile</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="profile-gender" value="female">
+                  <div class="card-content">
+                    <span class="card-title">♀️ Female</span>
+                    <span class="card-desc">Audit as Bride Profile</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="wizard-nav">
+              <div></div> <!-- empty spacer -->
+              <button type="button" class="btn btn-primary next-step" data-next="2">Continue to Pedigree ➜</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: PEDIGREE -->
+          <div class="wizard-step" id="step-2">
+            <h2 class="step-title">Step 2: Professional Pedigree</h2>
+            <p class="step-description">Enter details about career, education, and cash flow to determine base rating.</p>
+            
+            <div class="form-group">
+              <label for="groom-education">Educational Background</label>
+              <select id="groom-education" required>
+                <option value="" disabled selected>Select level of education...</option>
+                <option value="iit-iim">IIT / IIM / Ivy League (Premium Class)</option>
+                <option value="tier1">Tier-1 University (NITs, BITS, Top State)</option>
+                <option value="tier2">Tier-2/3 University (Regular Professional)</option>
+                <option value="degree-holder">Basic College Degree (Standard)</option>
+                <option value="whatsapp">Unaccredited / Alternative College Graduate</option>
+              </select>
+              <span class="field-hint">Institutional brand names carry high weight in demographic valuations.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="groom-job">Employment Sector & Status</label>
+              <select id="groom-job" required>
+                <option value="" disabled selected>Select career track...</option>
+                <option value="ias-ips">Civil Services (IAS / IPS / State Services)</option>
+                <option value="mnc-faang">MNC / FAANG Software Engineer (Solid Cash flow)</option>
+                <option value="startup-founder">Startup Founder (Equity-rich, cash-poor)</option>
+                <option value="family-biz">Managing Family Business</option>
+                <option value="influencer">Content Creator / Social Media (Self-Employed)</option>
+                <option value="unemployed">Unemployed / Seeking Opportunities</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="groom-income">Annual Income (INR)</label>
+              <input type="number" id="groom-income" min="0" placeholder="E.g. 1500000" required>
+              <span class="field-hint">Provide your annual gross salary/revenue in Rupees.</span>
+            </div>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-secondary prev-step" data-prev="1">Back</button>
+              <button type="button" class="btn btn-primary next-step" data-next="3">Continue to Specs ➜</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: SPECS (PHYSICAL & LIFESTYLE) -->
+          <div class="wizard-step" id="step-3">
+            <h2 class="step-title">Step 3: Physical Specifications</h2>
+            <p class="step-description">Demographic filters applied to physical profiles in arranged setups.</p>
+
+            <div class="form-group">
+              <label for="groom-height">Height (in feet/inches)</label>
+              <div class="slider-val-container">
+                <input type="range" id="groom-height" min="5.0" max="6.5" step="0.1" value="5.8">
+                <span class="slider-display" id="height-display">5'8"</span>
+              </div>
+              <span class="field-hint" id="height-comment">Average height. Standard valuation applies.</span>
+            </div>
+
+            <div class="form-group">
+              <label>Skin Complexion</label>
+              <div class="radio-card-group complexion-group">
+                <label class="radio-card">
+                  <input type="radio" name="groom-tone" value="glow" required>
+                  <div class="card-content">
+                    <span class="card-title">Very Fair</span>
+                    <span class="card-desc">Bright and fair complexion. Highly sought traditionally.</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="groom-tone" value="fair" checked>
+                  <div class="card-content">
+                    <span class="card-title">Fair / Wheatish</span>
+                    <span class="card-desc">Medium fair tone. Standard bracket.</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="groom-tone" value="dusky">
+                  <div class="card-content">
+                    <span class="card-title">Dusky</span>
+                    <span class="card-desc">Natural sun-kissed tone. Warm and rich.</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="groom-tone" value="dark">
+                  <div class="card-content">
+                    <span class="card-title">Rich Dark</span>
+                    <span class="card-desc">Deep and striking complexion. Exquisite and premium.</span>
+                  </div>
+                </label>
+              </div>
+              <div class="warning-alert">
+                ⚠️ <strong>Note:</strong> Societal colorism arbitrarily impacts matrimonial metrics. In reality, human worth is not measured in melanin.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="groom-age">Age</label>
+              <div class="slider-val-container">
+                <input type="range" id="groom-age" min="21" max="45" step="1" value="27">
+                <span class="slider-display" id="age-display">27 Years</span>
+              </div>
+              <span class="field-hint" id="age-comment">Prime marriage age index.</span>
+            </div>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-secondary prev-step" data-prev="2">Back</button>
+              <button type="button" class="btn btn-primary next-step" data-next="4">Continue to Assets ➜</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: ASSETS & PERKS -->
+          <div class="wizard-step" id="step-4">
+            <h2 class="step-title">Step 4: Tangible Assets & Perks</h2>
+            <p class="step-description">Final amplifiers based on parental property, family influence, and modern traits.</p>
+
+            <div class="form-group">
+              <label>Select Perks (Check all that apply)</label>
+              <div class="checkbox-grid">
+                <label class="check-card">
+                  <input type="checkbox" name="groom-perks" value="nri-sibling">
+                  <div class="check-content">
+                    <span class="check-title">✈️ NRI Sibling Link</span>
+                    <span class="check-desc">Has siblings settled in US, UK, or Canada (Immediate family bragging rights).</span>
+                  </div>
+                </label>
+
+                <label class="check-card">
+                  <input type="checkbox" name="groom-perks" value="metro-flat">
+                  <div class="check-content">
+                    <span class="check-title">🏢 Metro City Flat</span>
+                    <span class="check-desc">Fully owned (or highly mortgaged) flat in a tier-1 city.</span>
+                  </div>
+                </label>
+
+                <label class="check-card">
+                  <input type="checkbox" name="groom-perks" value="politician-father">
+                  <div class="check-content">
+                    <span class="check-title">🏛️ Influential Dad</span>
+                    <span class="check-desc">Father has strong government, corporate, or political connections.</span>
+                  </div>
+                </label>
+
+                <label class="check-card">
+                  <input type="checkbox" name="groom-perks" value="chef-skill">
+                  <div class="check-content">
+                    <span class="check-title">🍳 Advanced Cooking Skills</span>
+                    <span class="check-desc">Can cook full multi-course meals (highly valued household asset).</span>
+                  </div>
+                </label>
+
+                <label class="check-card">
+                  <input type="checkbox" name="groom-perks" value="dog-owner">
+                  <div class="check-content">
+                    <span class="check-title">🦮 Friendly Pet Owner</span>
+                    <span class="check-desc">Owns a well-behaved pet dog that brings joy to the home.</span>
+                  </div>
+                </label>
+
+                <label class="check-card">
+                  <input type="checkbox" name="groom-perks" value="no-gym-selfie">
+                  <div class="check-content">
+                    <span class="check-title">🚫 Zero Gym Selfies</span>
+                    <span class="check-desc">Has never posted bathroom mirror flexes (sign of emotional maturity).</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-secondary prev-step" data-prev="3">Back</button>
+              <button type="button" class="btn btn-primary" id="calculate-btn">Estimate Profile Certificate ⚡</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- LOADING SCREEN -->
+      <div class="card loading-card hidden" id="loading-card">
+        <div class="loader-spinner"></div>
+        <h2 class="loading-title">Auditing Matrimonial Profile Value</h2>
+        <p class="loading-subtitle">Querying wealth tables & auditing credentials...</p>
+        <div class="loading-logs" id="loading-logs">
+          <!-- Populated by JS dynamic phrases -->
+        </div>
+      </div>
+
+      <!-- RESULT DASHBOARD -->
+      <div class="result-dashboard hidden" id="result-dashboard">
+        
+        <!-- Tab Navigation for Results -->
+        <div class="result-tabs">
+          <button class="tab-btn active" id="tab-btn-receipt" onclick="switchResultTab('receipt')">💰 Valuation Receipt</button>
+          <button class="tab-btn" id="tab-btn-reality" onclick="switchResultTab('reality')">🚨 Reality Check</button>
+        </div>
+
+        <!-- TAB 1: VALUATION RECEIPT -->
+        <div class="tab-content active" id="tab-receipt">
+          <div class="card receipt-card">
+            <div class="receipt-header">
+              <div class="receipt-seal">AUDIT COMPLETE</div>
+              <h3 id="receipt-type-title">MATRIMONIAL PROFILE VALUE AUDIT</h3>
+              <p class="serial-num">Serial ID: MVAL-2026-X97Y</p>
+            </div>
+            
+            <div class="receipt-amount-box">
+              <span class="amount-label" id="receipt-amount-label">ESTIMATED PROFILE WORTH</span>
+              <h2 class="amount-val" id="receipt-total-value">₹0</h2>
+              <p class="amount-text" id="receipt-amount-text">Zero Rupees Only</p>
+              <div id="receipt-status-banner" class="hidden"></div>
+            </div>
+
+            <div class="receipt-details">
+              <h4>Valuation Breakdown:</h4>
+              <ul class="breakdown-list" id="receipt-breakdown">
+                <!-- Javascript will populate this -->
+              </ul>
+
+              <h4 class="extra-assets-title">Required Kind Assets:</h4>
+              <div class="assets-kind-grid" id="receipt-assets-kind">
+                <!-- Javascript will populate this -->
+              </div>
+            </div>
+
+            <div class="receipt-footer">
+              <p>Disclaimer: This valuation is an index estimation calculated based on standard matrimonial demographics. It does not constitute legal, financial, or marriage advisory.</p>
+            </div>
+          </div>
+
+          <div class="receipt-action-card card">
+            <h3>Reflections on this Profile Rating</h3>
+            <p>Does this estimated worth feel transactional or rigid? Matrimonial matching often reduces complex lives to these financial assets.</p>
+            
+            <div class="share-section" style="margin-top: 15px; border-top: 1px solid var(--color-card-border); padding-top: 20px; width: 100%;">
+              <h4 style="margin-bottom: 10px; font-family: var(--font-headers); font-size: 1.1rem;">Share Your Matrimonial Profile Rating</h4>
+              <div class="share-buttons-container" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="#" class="share-btn share-whatsapp" id="share-whatsapp-btn" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #25d366; transition: var(--transition-smooth);">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436.002 9.858-4.417 9.86-9.86.002-2.638-1.016-5.114-2.868-6.97C16.61 1.91 14.121.894 11.488.894c-5.438 0-9.859 4.418-9.863 9.863-.001 1.733.461 3.424 1.335 4.908L1.93 21.054l5.127-1.346-.41-.244zM16.89 13.91c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.568-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  </svg>
+                  Share on WhatsApp
+                </a>
+                <a href="#" class="share-btn share-twitter" id="share-twitter-btn" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #000000; border: 1px solid #374151; transition: var(--transition-smooth);">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  Share on X (Twitter)
+                </a>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="switchResultTab('reality')" style="margin-top: 15px;">Proceed to Reality Check ➜</button>
+          </div>
+        </div>
+
+        <!-- TAB 2: REALITY CHECK (EDUCATIONAL) -->
+        <div class="tab-content" id="tab-reality">
+          <div class="card reality-card">
+            <div class="section-badge red-badge">LAW & REALITY</div>
+            <h2 class="reality-title">The Real Cost of Dowry</h2>
+            
+            <div class="stats-grid">
+              <div class="stat-box">
+                <span class="stat-number">20+</span>
+                <span class="stat-label">Women die every day in India due to dowry-related violence (NCRB data).</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number">5 Years</span>
+                <span class="stat-label">Minimum imprisonment for demanding or accepting dowry.</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number">1961</span>
+                <span class="stat-label">The year Dowry was outlawed via the Dowry Prohibition Act.</span>
+              </div>
+            </div>
+
+            <div class="reality-content">
+              <h3>Dowry Prohibition Act, 1961</h3>
+              <p>Under Section 3 and 4 of the <strong>Dowry Prohibition Act</strong>, giving, taking, or even demanding dowry in any form is a cognizable and non-bailable offense. Violators face a minimum of 5 years in prison and a fine of ₹15,000 or the value of the dowry, whichever is higher.</p>
+              
+              <blockquote>
+                "Dowry is not a tradition. It is a transactional custom disguised as culture that reduces human beings to commodities and breeds systemic abuse."
+              </blockquote>
+
+              <h3>How it manifests today:</h3>
+              <p>While direct "cash demands" are sometimes avoided, it takes modern forms under phrases like <em>"We want nothing, just organize a grand wedding"</em>, <em>"Give whatever you want to your daughter"</em>, or demanding luxury cars, sponsorships for foreign education, or lavish apartment bookings.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; 2026 MatriVal. Designed for matrimonial awareness and equal partnerships.</p>
+    </footer>
+  </div>
+
+  <!-- JS Logic -->
+  <script src="app.js" type="module"></script>
+</body>
+</html>
