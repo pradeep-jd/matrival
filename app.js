@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Step 2 Inputs (Pedigree)
   const incomeInput = document.getElementById('groom-income');
+  const jobSelect = document.getElementById('groom-job');
   
   // Step 3 Inputs (Specs)
   const heightInput = document.getElementById('groom-height');
@@ -98,6 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
       ageComment.style.color = "var(--color-danger)";
     }
   });
+
+  // Job selection changes income field availability
+  const checkJobStatus = () => {
+    if (jobSelect && jobSelect.value === 'unemployed') {
+      incomeInput.value = '0';
+      incomeInput.disabled = true;
+    } else if (jobSelect) {
+      incomeInput.disabled = false;
+    }
+  };
+  if (jobSelect) {
+    jobSelect.addEventListener('change', checkJobStatus);
+    checkJobStatus(); // Run on init
+  }
 
   // --- Form Wizard Navigation ---
   
