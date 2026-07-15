@@ -1185,7 +1185,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   }
   
   .gender-group {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
   }
   
   .complexion-group {
@@ -1207,6 +1207,29 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .step-name {
     font-size: 0.8rem;
   }
+}
+
+/* --- Color Emoji Rendering & Animation --- */
+.emoji-native {
+  display: inline-block;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  font-size: 1.25em;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.emoji-salute {
+  animation: salute-bounce 2.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes salute-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  35% { transform: translateY(-6px) rotate(8deg); }
+  70% { transform: translateY(0) rotate(-3deg); }
 }
 
 @media (min-width: 768px) {
