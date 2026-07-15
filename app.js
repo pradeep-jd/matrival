@@ -387,37 +387,47 @@ document.addEventListener('DOMContentLoaded', () => {
     estimatedValuation = Math.max(0, baseValue);
 
     // Render receipt details
-    receiptTotalValue.textContent = formatCurrency(estimatedValuation);
-    receiptAmountText.textContent = numberToWordsIndian(estimatedValuation) + " Only";
-
-    // Populate Breakdown list
-    receiptBreakdown.innerHTML = '';
-    breakdown.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <span>${item.label}</span>
-        <span style="color: ${item.val >= 0 ? '#10b981' : '#ef4444'}">
-          ${item.val >= 0 ? '+' : ''}${formatCurrency(item.val)}
-        </span>
-      `;
-      receiptBreakdown.appendChild(li);
-    });
-
-    // Populate Kind Assets
-    receiptAssetsKind.innerHTML = '';
-    if (kindAssets.length > 0) {
-      kindAssets.forEach(asset => {
-        const span = document.createElement('span');
-        span.className = 'asset-tag';
-        span.textContent = asset;
-        receiptAssetsKind.appendChild(span);
-      });
+    if (userGender === 'male' && income < 1000000) {
+      receiptTotalValue.textContent = "Ah income ki dowry endhuku ra";
+      receiptTotalValue.style.fontSize = "1.6rem";
+      receiptAmountText.textContent = "";
+      
+      receiptBreakdown.innerHTML = '<li style="justify-content: center; color: var(--color-danger); font-weight: 600;">Valuation nullified due to low income index.</li>';
+      receiptAssetsKind.innerHTML = '<p style="font-size: 0.85rem; color: #6b7280; text-align: center;">None. Dowry not applicable.</p>';
     } else {
-      const p = document.createElement('p');
-      p.style.fontSize = '0.85rem';
-      p.style.color = '#6b7280';
-      p.textContent = "None required. Standard cash index applies.";
-      receiptAssetsKind.appendChild(p);
+      receiptTotalValue.textContent = formatCurrency(estimatedValuation);
+      receiptTotalValue.style.fontSize = "2.5rem";
+      receiptAmountText.textContent = numberToWordsIndian(estimatedValuation) + " Only";
+
+      // Populate Breakdown list
+      receiptBreakdown.innerHTML = '';
+      breakdown.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${item.label}</span>
+          <span style="color: ${item.val >= 0 ? '#10b981' : '#ef4444'}">
+            ${item.val >= 0 ? '+' : ''}${formatCurrency(item.val)}
+          </span>
+        `;
+        receiptBreakdown.appendChild(li);
+      });
+
+      // Populate Kind Assets
+      receiptAssetsKind.innerHTML = '';
+      if (kindAssets.length > 0) {
+        kindAssets.forEach(asset => {
+          const span = document.createElement('span');
+          span.className = 'asset-tag';
+          span.textContent = asset;
+          receiptAssetsKind.appendChild(span);
+        });
+      } else {
+        const p = document.createElement('p');
+        p.style.fontSize = '0.85rem';
+        p.style.color = '#6b7280';
+        p.textContent = "None required. Standard cash index applies.";
+        receiptAssetsKind.appendChild(p);
+      }
     }
 
     // Custom demographic status banner checks
@@ -507,9 +517,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const setupShareLinks = (name) => {
     const siteUrl = window.location.href.split('?')[0];
-    const textValuation = formatCurrency(estimatedValuation);
+    const income = parseInt(incomeInput.value) || 0;
     
-    const message = `My MatriVal Matrimonial Profile rating is ${textValuation}! 💰 Audit your profile rating here: ${siteUrl}`;
+    let message = '';
+    if (userGender === 'male' && income < 1000000) {
+      message = `My MatriVal Matrimonial Profile rating: Ah income ki dowry endhuku ra! ⚖️ Audit your profile rating here: ${siteUrl}`;
+    } else {
+      const textValuation = formatCurrency(estimatedValuation);
+      message = `My MatriVal Matrimonial Profile rating is ${textValuation}! 💰 Audit your profile rating here: ${siteUrl}`;
+    }
     
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
