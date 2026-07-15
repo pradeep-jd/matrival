@@ -387,7 +387,14 @@ document.addEventListener('DOMContentLoaded', () => {
     estimatedValuation = Math.max(0, baseValue);
 
     // Render receipt details
-    if (userGender === 'male' && income < 1000000) {
+    if (userGender === 'male' && job === 'unemployed') {
+      receiptTotalValue.textContent = " Niku endhuku ayya pelli ";
+      receiptTotalValue.style.fontSize = "1.6rem";
+      receiptAmountText.textContent = "";
+      
+      receiptBreakdown.innerHTML = '<li style="justify-content: center; color: var(--color-danger); font-weight: 600;">Valuation nullified due to unemployment status.</li>';
+      receiptAssetsKind.innerHTML = '<p style="font-size: 0.85rem; color: #6b7280; text-align: center;">None. Dowry not applicable.</p>';
+    } else if (userGender === 'male' && income < 1000000) {
       receiptTotalValue.textContent = "Ah income ki dowry endhuku ra";
       receiptTotalValue.style.fontSize = "1.6rem";
       receiptAmountText.textContent = "";
@@ -518,9 +525,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const setupShareLinks = (name) => {
     const siteUrl = window.location.href.split('?')[0];
     const income = parseInt(incomeInput.value) || 0;
+    const job = document.getElementById('groom-job').value;
     
     let message = '';
-    if (userGender === 'male' && income < 1000000) {
+    if (userGender === 'male' && job === 'unemployed') {
+      message = `My MatriVal Matrimonial Profile rating:  Niku endhuku ayya pelli ! ⚖️ Audit your profile rating here: ${siteUrl}`;
+    } else if (userGender === 'male' && income < 1000000) {
       message = `My MatriVal Matrimonial Profile rating: Ah income ki dowry endhuku ra! ⚖️ Audit your profile rating here: ${siteUrl}`;
     } else {
       const textValuation = formatCurrency(estimatedValuation);
