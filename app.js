@@ -114,6 +114,36 @@ document.addEventListener('DOMContentLoaded', () => {
     checkJobStatus(); // Run on init
   }
 
+  // Easter Egg handler for Other gender
+  const genderRadios = document.querySelectorAll('input[name="profile-gender"]');
+  const easterEggCard = document.getElementById('easter-egg-card');
+  const easterEggResetBtn = document.getElementById('easter-egg-reset-btn');
+
+  const checkGenderStatus = () => {
+    const selectedGender = document.querySelector('input[name="profile-gender"]:checked');
+    if (selectedGender && selectedGender.value === 'other') {
+      wizardCard.classList.add('hidden');
+      if (easterEggCard) easterEggCard.classList.remove('hidden');
+    }
+  };
+
+  genderRadios.forEach(radio => {
+    radio.addEventListener('change', checkGenderStatus);
+  });
+  checkGenderStatus(); // Run on init
+
+  if (easterEggResetBtn) {
+    easterEggResetBtn.addEventListener('click', () => {
+      const maleRadio = document.querySelector('input[name="profile-gender"][value="male"]');
+      if (maleRadio) {
+        maleRadio.checked = true;
+        maleRadio.dispatchEvent(new Event('change'));
+      }
+      if (easterEggCard) easterEggCard.classList.add('hidden');
+      wizardCard.classList.remove('hidden');
+    });
+  }
+
   // --- Form Wizard Navigation ---
   
   const updateWizardProgressBar = () => {
